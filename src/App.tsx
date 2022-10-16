@@ -1,18 +1,12 @@
 import React from 'react';
-import './App.scss';
-import Header from './app/components/layout/header/Header';
-import Footer from './app/components/layout/footer/Footer';
-import { Counter } from './features/counter/Counter';
+import { BrowserRouter } from 'react-router-dom';
+import AppLayout from './app/layout';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <main className="App-Main">
-        <Counter />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <AppLayout />
+    </BrowserRouter>
   );
 }
 
