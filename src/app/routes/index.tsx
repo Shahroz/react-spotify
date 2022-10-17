@@ -27,6 +27,10 @@ const Layout = () => {
                         </Route>
                     )
             }
+            <Route
+                path="*"
+                element={<Navigate to={isLoggedIn ? "/" : "/auth/login"} />}
+            />
         </Routes>
     )
 }
