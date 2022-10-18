@@ -9,7 +9,7 @@ import {doLogIn} from "../../../../features/auth/authSlice";
      }
 
     return (
-        <div className="App-Login">
+        <div className="App-Login ">
             Login goes here
             <div>
             <button onClick={login}>Login</button>

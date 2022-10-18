@@ -1,6 +1,5 @@
 import  { lazy, Suspense } from "react";
-
-const Layout = lazy(() => import("../routes"));
+const Routing = lazy(() => import("../routing"));
 
 const AppLayout = () => {
   return (
@@ -16,7 +15,8 @@ const AppLayout = () => {
           Loading...
         </div>
       }>
-      <Layout />
+      <Routing
+      />
     </Suspense>
   )
 }
