@@ -1,24 +1,47 @@
-import {configureStore, ThunkAction, Action, combineReducers} from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
-import authReducer from '../features/auth/authSlice';
-import {persistReducer} from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+import {
+  configureStore,
+  ThunkAction,
+  Action,
+  combineReducers,
+} from "@reduxjs/toolkit";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import thunk from "redux-thunk";
+
+import authReducer from "../features/auth/authSlice";
+import counterReducer from "../features/counter/counterSlice";
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
+  version: 1,
   storage,
-  whitelist: ['auth']
-}
+  whitelist: ["auth"],
+};
 
 const reducer = combineReducers({
   counter: counterReducer,
   auth: authReducer,
-})
+});
 
-const persistedReducer = persistReducer(persistConfig, reducer)
+const persistedReducer = persistReducer(persistConfig, reducer);
 
 export const store = configureStore({
-  reducer : persistedReducer
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }).concat([thunk]),
+  //devTools: process.env.NODE_ENV !== 'production',
 });
 
 export type AppDispatch = typeof store.dispatch;

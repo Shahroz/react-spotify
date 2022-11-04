@@ -1,9 +1,10 @@
-import  { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 const Routing = lazy(() => import("../routing"));
 
 const AppLayout = () => {
   return (
-    <Suspense fallback={
+    <Suspense
+      fallback={
         <div
           className="d-flex justify-content-center align-items-center"
           style={{
@@ -14,11 +15,11 @@ const AppLayout = () => {
         >
           Loading...
         </div>
-      }>
-      <Routing
-      />
+      }
+    >
+      <Routing />
     </Suspense>
-  )
-}
+  );
+};
 
 export default AppLayout;
