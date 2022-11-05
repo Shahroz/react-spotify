@@ -12,7 +12,7 @@ import App from "./App";
 const root = createRoot(
   document.getElementById("root") || document.createElement("div")
 );
-let persistor = persistStore(store);
+const persistor = persistStore(store);
 
 root.render(
   <React.StrictMode>
